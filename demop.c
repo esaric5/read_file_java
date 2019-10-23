@@ -26,14 +26,14 @@ int solveMatrix(int argc)
 	b = NULL;
 
 	nicslu = (SNicsLU *)malloc(sizeof(SNicsLU));
-	//NicsLU_Initialize(nicslu);
+	NicsLU_Initialize(nicslu);
 
 	ret = NicsLU_ReadTripletColumnToSparse("ASIC_100k.mtx", &n, &nnz, &ax, &ai, &ap);
 	if (ret != NICS_OK) {
 		printf("%d", ret);
 		goto EXIT;
 	}
-/*
+
 	x = (real__t *)malloc(sizeof(real__t)*(n+n));
 	b = x + n;
 	for (i=0; i<n+n; ++i) x[i] = 1.;
@@ -79,9 +79,9 @@ int solveMatrix(int argc)
 	printf("condition number: %.8g\n", nicslu->stat[6]);
 	NicsLU_MemoryUsage(nicslu, NULL);
 	printf("memory (Mbytes): %.8g\n", nicslu->stat[21]/1024./1024.);
-*/
+
 EXIT:
-	//NicsLU_Destroy(nicslu);
+	NicsLU_Destroy(nicslu);
 	free(ax);
 	free(ai);
 	free(ap);

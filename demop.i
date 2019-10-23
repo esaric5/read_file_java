@@ -7,4 +7,5 @@
 #include "nicslu_util.h"
 %}
 
+%include "nicslu.h"
 extern int solveMatrix(int argc);

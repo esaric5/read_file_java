@@ -1,5 +1,6 @@
 #include "nicslu_util.h"
 #include "nicslu.h"
+#include <locale.h>
 
 #define ROW_LENGTH 1024
 
@@ -12,7 +13,7 @@ static int ReadHeader3(FILE *f, uint__t *m, uint__t *n, uint__t *nnz)
 	line[0] = 0;
 	*m = *n = *nnz = 0;
 
-	do 
+	do
 	{
 		if (fgets(line, ROW_LENGTH-1, f) == NULL) return NICSLU_GENERAL_FAIL;
 	} while (line[0] == '%');
@@ -32,7 +33,7 @@ static int ReadHeader3(FILE *f, uint__t *m, uint__t *n, uint__t *nnz)
 	else
 	{
 		do
-		{ 
+		{
 #ifdef INT64__
 #ifdef _WIN32
 			read = fscanf(f, "%I64u %I64u %I64u", m, n, nnz);
@@ -56,7 +57,7 @@ static int ReadHeader2(FILE *f, uint__t *m, uint__t *n, uint__t *nnz)
 	line[0] = 0;
 	*m = *n = *nnz = 0;
 
-	do 
+	do
 	{
 		if (fgets(line, ROW_LENGTH-1, f) == NULL) return NICSLU_GENERAL_FAIL;
 	} while (line[0] == '%');
@@ -77,7 +78,7 @@ static int ReadHeader2(FILE *f, uint__t *m, uint__t *n, uint__t *nnz)
 	else
 	{
 		do
-		{ 
+		{
 #ifdef INT64__
 #ifdef _WIN32
 			read = fscanf(f, "%I64u %I64u", m, nnz);
@@ -98,6 +99,7 @@ static int ReadHeader2(FILE *f, uint__t *m, uint__t *n, uint__t *nnz)
 int NicsLU_ReadTripletColumnToSparse(char *file, uint__t *n, uint__t *nnz, \
 									 real__t **ax, uint__t **ai, uint__t **ap)
 {
+	setlocale(LC_NUMERIC, "en_US.UTF-8");
 	FILE *fp;
 	int err;
 	uint__t m, *aj, i, j;
@@ -163,7 +165,6 @@ int NicsLU_ReadTripletColumnToSparse(char *file, uint__t *n, uint__t *nnz, \
 		}
 		return NICSLU_MEMORY_OVERFLOW;
 	}
-
 	for (i=0; i<*nnz; ++i)
 	{
 #ifdef INT64__
@@ -175,6 +176,7 @@ int NicsLU_ReadTripletColumnToSparse(char *file, uint__t *n, uint__t *nnz, \
 #else
 		cnt = fscanf(fp, "%u %u %lf", &((*ai)[i]), &aj[i], &((*ax)[i]));
 #endif
+
 		if (cnt != 3)
 		{
 			free(aj);
@@ -307,6 +309,7 @@ int NicsLU_ReadTripletRowToSparse(char *file, uint__t *n, uint__t *nnz, \
 #else
 		cnt = fscanf(fp, "%u %u %lf", &aj[i], &((*ai)[i]), &((*ax)[i]));
 #endif
+printf("%u %u %lf", aj[i], ((*ai)[i]), ((*ax)[i]));
 		if (cnt != 3)
 		{
 			free(aj);

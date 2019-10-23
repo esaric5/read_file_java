@@ -2,6 +2,7 @@
 %{
 #include "nicslu_util.h"
 #include "nicslu.h"
+#include <locale.h>
 %}
 
 #define ROW_LENGTH 1024
