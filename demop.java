@@ -16,20 +16,20 @@ public class demop implements demopConstants {
     return demopJNI.NicsLU_Destroy(SNicsLU.getCPtr(nicslu), nicslu);
   }
 
-  public static int NicsLU_CreateMatrix(SNicsLU nicslu, SWIGTYPE_p_uint__t n, SWIGTYPE_p_uint__t nnz, SWIGTYPE_p_real__t ax, SWIGTYPE_p_uint__t ai, SWIGTYPE_p_uint__t ap) {
-    return demopJNI.NicsLU_CreateMatrix(SNicsLU.getCPtr(nicslu), nicslu, SWIGTYPE_p_uint__t.getCPtr(n), SWIGTYPE_p_uint__t.getCPtr(nnz), SWIGTYPE_p_real__t.getCPtr(ax), SWIGTYPE_p_uint__t.getCPtr(ai), SWIGTYPE_p_uint__t.getCPtr(ap));
+  public static int NicsLU_CreateMatrix(SNicsLU nicslu, int n, int nnz, SWIGTYPE_p_real__t ax, SWIGTYPE_p_uint__t ai, SWIGTYPE_p_uint__t ap) {
+    return demopJNI.NicsLU_CreateMatrix(SNicsLU.getCPtr(nicslu), nicslu, n, nnz, SWIGTYPE_p_real__t.getCPtr(ax), SWIGTYPE_p_uint__t.getCPtr(ai), SWIGTYPE_p_uint__t.getCPtr(ap));
   }
 
   public static int NicsLU_CreateScheduler(SNicsLU nicslu) {
     return demopJNI.NicsLU_CreateScheduler(SNicsLU.getCPtr(nicslu), nicslu);
   }
 
-  public static int NicsLU_CreateThreads(SNicsLU nicslu, long threads, SWIGTYPE_p_bool__t check) {
-    return demopJNI.NicsLU_CreateThreads(SNicsLU.getCPtr(nicslu), nicslu, threads, SWIGTYPE_p_bool__t.getCPtr(check));
+  public static int NicsLU_CreateThreads(SNicsLU nicslu, long threads, boolean check) {
+    return demopJNI.NicsLU_CreateThreads(SNicsLU.getCPtr(nicslu), nicslu, threads, check);
   }
 
-  public static int NicsLU_BindThreads(SNicsLU nicslu, SWIGTYPE_p_bool__t unbind) {
-    return demopJNI.NicsLU_BindThreads(SNicsLU.getCPtr(nicslu), nicslu, SWIGTYPE_p_bool__t.getCPtr(unbind));
+  public static int NicsLU_BindThreads(SNicsLU nicslu, boolean unbind) {
+    return demopJNI.NicsLU_BindThreads(SNicsLU.getCPtr(nicslu), nicslu, unbind);
   }
 
   public static int NicsLU_DestroyThreads(SNicsLU nicslu) {
@@ -68,8 +68,8 @@ public class demop implements demopConstants {
     return demopJNI.NicsLU_ResetMatrixValues(SNicsLU.getCPtr(nicslu), nicslu, SWIGTYPE_p_real__t.getCPtr(ax));
   }
 
-  public static int NicsLU_Refine(SNicsLU nicslu, SWIGTYPE_p_real__t x, SWIGTYPE_p_real__t b, SWIGTYPE_p_real__t eps, SWIGTYPE_p_uint__t maxiter) {
-    return demopJNI.NicsLU_Refine(SNicsLU.getCPtr(nicslu), nicslu, SWIGTYPE_p_real__t.getCPtr(x), SWIGTYPE_p_real__t.getCPtr(b), SWIGTYPE_p_real__t.getCPtr(eps), SWIGTYPE_p_uint__t.getCPtr(maxiter));
+  public static int NicsLU_Refine(SNicsLU nicslu, SWIGTYPE_p_real__t x, SWIGTYPE_p_real__t b, double eps, int maxiter) {
+    return demopJNI.NicsLU_Refine(SNicsLU.getCPtr(nicslu), nicslu, SWIGTYPE_p_real__t.getCPtr(x), SWIGTYPE_p_real__t.getCPtr(b), eps, maxiter);
   }
 
   public static int NicsLU_Throughput(SNicsLU nicslu, SWIGTYPE_p_real__t thr) {
@@ -100,24 +100,28 @@ public class demop implements demopConstants {
     return demopJNI.NicsLU_MemoryUsage(SNicsLU.getCPtr(nicslu), nicslu, SWIGTYPE_p_real__t.getCPtr(memuse));
   }
 
-  public static int NicsLU_Residual(SWIGTYPE_p_uint__t n, SWIGTYPE_p_real__t ax, SWIGTYPE_p_uint__t ai, SWIGTYPE_p_uint__t ap, SWIGTYPE_p_real__t x, SWIGTYPE_p_real__t b, SWIGTYPE_p_real__t error, int norm, int mode) {
-    return demopJNI.NicsLU_Residual(SWIGTYPE_p_uint__t.getCPtr(n), SWIGTYPE_p_real__t.getCPtr(ax), SWIGTYPE_p_uint__t.getCPtr(ai), SWIGTYPE_p_uint__t.getCPtr(ap), SWIGTYPE_p_real__t.getCPtr(x), SWIGTYPE_p_real__t.getCPtr(b), SWIGTYPE_p_real__t.getCPtr(error), norm, mode);
+  public static int NicsLU_Residual(int n, SWIGTYPE_p_real__t ax, SWIGTYPE_p_uint__t ai, SWIGTYPE_p_uint__t ap, SWIGTYPE_p_real__t x, SWIGTYPE_p_real__t b, SWIGTYPE_p_real__t error, int norm, int mode) {
+    return demopJNI.NicsLU_Residual(n, SWIGTYPE_p_real__t.getCPtr(ax), SWIGTYPE_p_uint__t.getCPtr(ai), SWIGTYPE_p_uint__t.getCPtr(ap), SWIGTYPE_p_real__t.getCPtr(x), SWIGTYPE_p_real__t.getCPtr(b), SWIGTYPE_p_real__t.getCPtr(error), norm, mode);
   }
 
-  public static int NicsLU_Transpose(SWIGTYPE_p_uint__t n, SWIGTYPE_p_uint__t nnz, SWIGTYPE_p_real__t ax, SWIGTYPE_p_uint__t ai, SWIGTYPE_p_uint__t ap) {
-    return demopJNI.NicsLU_Transpose(SWIGTYPE_p_uint__t.getCPtr(n), SWIGTYPE_p_uint__t.getCPtr(nnz), SWIGTYPE_p_real__t.getCPtr(ax), SWIGTYPE_p_uint__t.getCPtr(ai), SWIGTYPE_p_uint__t.getCPtr(ap));
+  public static int NicsLU_Transpose(int n, int nnz, SWIGTYPE_p_real__t ax, SWIGTYPE_p_uint__t ai, SWIGTYPE_p_uint__t ap) {
+    return demopJNI.NicsLU_Transpose(n, nnz, SWIGTYPE_p_real__t.getCPtr(ax), SWIGTYPE_p_uint__t.getCPtr(ai), SWIGTYPE_p_uint__t.getCPtr(ap));
   }
 
-  public static int NicsLU_Sort(SWIGTYPE_p_uint__t n, SWIGTYPE_p_uint__t nnz, SWIGTYPE_p_real__t ax, SWIGTYPE_p_uint__t ai, SWIGTYPE_p_uint__t ap) {
-    return demopJNI.NicsLU_Sort(SWIGTYPE_p_uint__t.getCPtr(n), SWIGTYPE_p_uint__t.getCPtr(nnz), SWIGTYPE_p_real__t.getCPtr(ax), SWIGTYPE_p_uint__t.getCPtr(ai), SWIGTYPE_p_uint__t.getCPtr(ap));
+  public static int NicsLU_Sort(int n, int nnz, SWIGTYPE_p_real__t ax, SWIGTYPE_p_uint__t ai, SWIGTYPE_p_uint__t ap) {
+    return demopJNI.NicsLU_Sort(n, nnz, SWIGTYPE_p_real__t.getCPtr(ax), SWIGTYPE_p_uint__t.getCPtr(ai), SWIGTYPE_p_uint__t.getCPtr(ap));
   }
 
-  public static int NicsLU_MergeDuplicateEntries(SWIGTYPE_p_uint__t n, SWIGTYPE_p_uint__t nnz, SWIGTYPE_p_p_real__t ax, SWIGTYPE_p_p_uint__t ai, SWIGTYPE_p_p_uint__t ap) {
-    return demopJNI.NicsLU_MergeDuplicateEntries(SWIGTYPE_p_uint__t.getCPtr(n), SWIGTYPE_p_uint__t.getCPtr(nnz), SWIGTYPE_p_p_real__t.getCPtr(ax), SWIGTYPE_p_p_uint__t.getCPtr(ai), SWIGTYPE_p_p_uint__t.getCPtr(ap));
+  public static int NicsLU_MergeDuplicateEntries(int n, SWIGTYPE_p_uint__t nnz, SWIGTYPE_p_p_real__t ax, SWIGTYPE_p_p_uint__t ai, SWIGTYPE_p_p_uint__t ap) {
+    return demopJNI.NicsLU_MergeDuplicateEntries(n, SWIGTYPE_p_uint__t.getCPtr(nnz), SWIGTYPE_p_p_real__t.getCPtr(ax), SWIGTYPE_p_p_uint__t.getCPtr(ai), SWIGTYPE_p_p_uint__t.getCPtr(ap));
   }
 
-  public static int solveMatrix(int argc) {
-    return demopJNI.solveMatrix(argc);
+  public static int callResidual(int n, SWIGTYPE_p_real__t ax, SWIGTYPE_p_uint__t ai, SWIGTYPE_p_uint__t ap, SWIGTYPE_p_real__t x, SWIGTYPE_p_real__t b, SWIGTYPE_p_real__t err, int norm, int mode) {
+    return demopJNI.callResidual(n, SWIGTYPE_p_real__t.getCPtr(ax), SWIGTYPE_p_uint__t.getCPtr(ai), SWIGTYPE_p_uint__t.getCPtr(ap), SWIGTYPE_p_real__t.getCPtr(x), SWIGTYPE_p_real__t.getCPtr(b), SWIGTYPE_p_real__t.getCPtr(err), norm, mode);
+  }
+
+  public static int solveMatrix(SWIGTYPE_p_uint__t n, SWIGTYPE_p_uint__t nnz, SWIGTYPE_p_uint__t ai, SWIGTYPE_p_uint__t ap, SWIGTYPE_p_real__t ax, SWIGTYPE_p_real__t x, SWIGTYPE_p_real__t b) {
+    return demopJNI.solveMatrix(SWIGTYPE_p_uint__t.getCPtr(n), SWIGTYPE_p_uint__t.getCPtr(nnz), SWIGTYPE_p_uint__t.getCPtr(ai), SWIGTYPE_p_uint__t.getCPtr(ap), SWIGTYPE_p_real__t.getCPtr(ax), SWIGTYPE_p_real__t.getCPtr(x), SWIGTYPE_p_real__t.getCPtr(b));
   }
 
 }

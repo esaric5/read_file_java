@@ -286,7 +286,7 @@ int \
 /*the following routines are without the SNicsLU structure*/
 
 /*residual error = |Ax-b|*/
-/*1-norm(norm=1), 2-norm(norm=2), ¡Þ-norm(norm=other)*/
+/*1-norm(norm=1), 2-norm(norm=2), ï¿½ï¿½-norm(norm=other)*/
 /*mode=0:row mode, mode=1:column mode*/
 int \
 	NicsLU_Residual( \

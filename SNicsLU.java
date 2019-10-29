@@ -70,21 +70,17 @@ public class SNicsLU {
     return (cPtr == 0) ? null : new SWIGTYPE_p_real__t(cPtr, false);
   }
 
-  public void setN(SWIGTYPE_p_uint__t value) {
-    demopJNI.SNicsLU_n_set(swigCPtr, this, SWIGTYPE_p_uint__t.getCPtr(value));
+  public void setN(int value) {
+    demopJNI.SNicsLU_n_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_uint__t getN() {
-    return new SWIGTYPE_p_uint__t(demopJNI.SNicsLU_n_get(swigCPtr, this), true);
+  public int getN() { return demopJNI.SNicsLU_n_get(swigCPtr, this); }
+
+  public void setNnz(int value) {
+    demopJNI.SNicsLU_nnz_set(swigCPtr, this, value);
   }
 
-  public void setNnz(SWIGTYPE_p_uint__t value) {
-    demopJNI.SNicsLU_nnz_set(swigCPtr, this, SWIGTYPE_p_uint__t.getCPtr(value));
-  }
-
-  public SWIGTYPE_p_uint__t getNnz() {
-    return new SWIGTYPE_p_uint__t(demopJNI.SNicsLU_nnz_get(swigCPtr, this), true);
-  }
+  public int getNnz() { return demopJNI.SNicsLU_nnz_get(swigCPtr, this); }
 
   public void setAx(SWIGTYPE_p_real__t value) {
     demopJNI.SNicsLU_ax_set(swigCPtr, this, SWIGTYPE_p_real__t.getCPtr(value));
@@ -405,37 +401,29 @@ public class SNicsLU {
     return (cPtr == 0) ? null : new SWIGTYPE_p_uint__t(cPtr, false);
   }
 
-  public void setPipeline_start(SWIGTYPE_p_uint__t value) {
-    demopJNI.SNicsLU_pipeline_start_set(swigCPtr, this, SWIGTYPE_p_uint__t.getCPtr(value));
+  public void setPipeline_start(int value) {
+    demopJNI.SNicsLU_pipeline_start_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_uint__t getPipeline_start() {
-    return new SWIGTYPE_p_uint__t(demopJNI.SNicsLU_pipeline_start_get(swigCPtr, this), true);
+  public int getPipeline_start() { return demopJNI.SNicsLU_pipeline_start_get(swigCPtr, this); }
+
+  public void setPipeline_end(int value) {
+    demopJNI.SNicsLU_pipeline_end_set(swigCPtr, this, value);
   }
 
-  public void setPipeline_end(SWIGTYPE_p_uint__t value) {
-    demopJNI.SNicsLU_pipeline_end_set(swigCPtr, this, SWIGTYPE_p_uint__t.getCPtr(value));
+  public int getPipeline_end() { return demopJNI.SNicsLU_pipeline_end_get(swigCPtr, this); }
+
+  public void setLast_busy(int value) {
+    demopJNI.SNicsLU_last_busy_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_uint__t getPipeline_end() {
-    return new SWIGTYPE_p_uint__t(demopJNI.SNicsLU_pipeline_end_get(swigCPtr, this), true);
+  public int getLast_busy() { return demopJNI.SNicsLU_last_busy_get(swigCPtr, this); }
+
+  public void setAeg_level(int value) {
+    demopJNI.SNicsLU_aeg_level_set(swigCPtr, this, value);
   }
 
-  public void setLast_busy(SWIGTYPE_p_uint__t value) {
-    demopJNI.SNicsLU_last_busy_set(swigCPtr, this, SWIGTYPE_p_uint__t.getCPtr(value));
-  }
-
-  public SWIGTYPE_p_uint__t getLast_busy() {
-    return new SWIGTYPE_p_uint__t(demopJNI.SNicsLU_last_busy_get(swigCPtr, this), true);
-  }
-
-  public void setAeg_level(SWIGTYPE_p_uint__t value) {
-    demopJNI.SNicsLU_aeg_level_set(swigCPtr, this, SWIGTYPE_p_uint__t.getCPtr(value));
-  }
-
-  public SWIGTYPE_p_uint__t getAeg_level() {
-    return new SWIGTYPE_p_uint__t(demopJNI.SNicsLU_aeg_level_get(swigCPtr, this), true);
-  }
+  public int getAeg_level() { return demopJNI.SNicsLU_aeg_level_get(swigCPtr, this); }
 
   public void setAeg_data(SWIGTYPE_p_uint__t value) {
     demopJNI.SNicsLU_aeg_data_set(swigCPtr, this, SWIGTYPE_p_uint__t.getCPtr(value));
@@ -455,13 +443,11 @@ public class SNicsLU {
     return (cPtr == 0) ? null : new SWIGTYPE_p_uint__t(cPtr, false);
   }
 
-  public void setAeg_refact_level(SWIGTYPE_p_uint__t value) {
-    demopJNI.SNicsLU_aeg_refact_level_set(swigCPtr, this, SWIGTYPE_p_uint__t.getCPtr(value));
+  public void setAeg_refact_level(int value) {
+    demopJNI.SNicsLU_aeg_refact_level_set(swigCPtr, this, value);
   }
 
-  public SWIGTYPE_p_uint__t getAeg_refact_level() {
-    return new SWIGTYPE_p_uint__t(demopJNI.SNicsLU_aeg_refact_level_get(swigCPtr, this), true);
-  }
+  public int getAeg_refact_level() { return demopJNI.SNicsLU_aeg_refact_level_get(swigCPtr, this); }
 
   public void setAeg_refact_data(SWIGTYPE_p_uint__t value) {
     demopJNI.SNicsLU_aeg_refact_data_set(swigCPtr, this, SWIGTYPE_p_uint__t.getCPtr(value));

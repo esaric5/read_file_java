@@ -4,42 +4,62 @@
 #include "nicslu.h"
 #include "nicslu_util.h"
 
-int solveMatrix(int argc)
+int callResidual(uint__t n, real__t *ax, uint__t *ai, uint__t *ap, real__t *x, \
+	real__t *b, 	real__t *err, int norm, int mode) {
+	real__t myerr;
+	int ret=NicsLU_Residual(n, ax, ai, ap, x, b, &myerr, norm, mode);
+	printf("%lf\n", myerr);
+	err=&myerr;
+	return ret;
+}
+
+
+int solveMatrix(uint__t *n, uint__t *nnz, uint__t *ai, uint__t *ap, real__t *ax, real__t *x, real__t *b)
 {
 	int ret;
-	uint__t n, nnz, i;
-	real__t *ax;
-	uint__t *ai, *ap;
+	uint__t i;
 	SNicsLU *nicslu;
-	real__t *x, *b, err;
+	real__t err;
+	uint__t *Ap, *Ai;
+	real__t *Ax, *B, *X;
 
+	/*
 	if (argc == 1)
 	{
 		printf("usage: demop <#threads>\n");
 		return -1;
-	}
+	}*/
 
-	ax = NULL;
-	ai = NULL;
-	ap = NULL;
-	x = NULL;
-	b = NULL;
-
+	Ax = NULL;
+	Ai = NULL;
+	Ap = NULL;
+	X = NULL;
+	B = NULL;
+	/*
 	nicslu = (SNicsLU *)malloc(sizeof(SNicsLU));
-	NicsLU_Initialize(nicslu);
+	NicsLU_Initialize(nicslu);*/
 
-	ret = NicsLU_ReadTripletColumnToSparse("ASIC_100k.mtx", &n, &nnz, &ax, &ai, &ap);
+	ret = NicsLU_ReadTripletColumnToSparse("ASIC_100k.mtx", n, nnz, &Ax, &Ai, &Ap);
 	if (ret != NICS_OK) {
 		printf("%d", ret);
-		goto EXIT;
+		return 0;
 	}
 
-	x = (real__t *)malloc(sizeof(real__t)*(n+n));
-	b = x + n;
-	for (i=0; i<n+n; ++i) x[i] = 1.;
+	for (int i=0;i<*nnz;i++) {
+		ax[i]=Ax[i];
+		ai[i]=Ai[i];
+		if (i<=*n) ap[i]=Ap[i];
+	}
 
+	x = (real__t *)malloc(sizeof(real__t)*(*n+*n));
+	b = x + *n;
+	for (i=0; i<*n+*n; ++i) x[i] = 1.;
+
+	return 1;
+	/*
 	NicsLU_CreateMatrix(nicslu, n, nnz, ax, ai, ap);
 	nicslu->cfgf[0] = 1.;
+	printf("%u\n", nicslu->n);
 
 	NicsLU_Analyze(nicslu);
 	printf("analysis time: %.8g\n", nicslu->stat[0]);
@@ -78,8 +98,8 @@ int solveMatrix(int argc)
 	printf("throughput (bytes): %.8g\n", nicslu->stat[12]);
 	printf("condition number: %.8g\n", nicslu->stat[6]);
 	NicsLU_MemoryUsage(nicslu, NULL);
-	printf("memory (Mbytes): %.8g\n", nicslu->stat[21]/1024./1024.);
-
+	printf("memory (Mbytes): %.8g\n", nicslu->stat[21]/1024./1024.);*/
+/*
 EXIT:
 	NicsLU_Destroy(nicslu);
 	free(ax);
@@ -87,5 +107,5 @@ EXIT:
 	free(ap);
 	free(nicslu);
 	free(x);
-	return 0;
+	return 0;*/
 }
